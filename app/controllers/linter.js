@@ -2,32 +2,32 @@ import Ember from 'ember';
 import pointer from 'npm:json-pointer';
 
 export default Ember.Controller.extend({
-  jsonObject: '',
-  jsonPointer: '',
+  objectString: '',
+  pointer: '',
 
-  jsonPointerValue: Ember.computed('jsonPointer', 'parsedJsonObject', function() {
+  pointerObject: Ember.computed('pointer', 'object', function() {
     try {
-      return pointer.get(this.get('parsedJsonObject'), this.get('jsonPointer'));
+      return pointer.get(this.get('object'), this.get('pointer'));
     }
     catch (e) { return undefined; }
   }),
 
-  parsedJsonObject: Ember.computed('jsonObject', function() {
-    try { return JSON.parse(this.get('jsonObject')); }
+  object: Ember.computed('objectString', function() {
+    try { return JSON.parse(this.get('objectString')); }
     catch (e) { return undefined; }
   }),
 
-  formattedJsonObject: Ember.computed('parsedJsonObject', function() {
-    if (typeof this.get('parsedJsonObject') === 'undefined') {
+  stringifiedObject: Ember.computed('object', function() {
+    if (typeof this.get('object') === 'undefined') {
       return 'Please enter a valid JSON object.';
     }
-    return JSON.stringify(this.get('parsedJsonObject'), null, '  ');
+    return JSON.stringify(this.get('object'), null, '  ');
   }),
 
-  formattedJsonPointerValue: Ember.computed('jsonPointerValue', function() {
-    if (typeof this.get('jsonPointerValue') === 'undefined') {
+  stringifiedPointerObject: Ember.computed('pointerObject', function() {
+    if (typeof this.get('pointerObject') === 'undefined') {
       return 'Please enter a valid JSON object and pointer.';
     }
-    return JSON.stringify(this.get('jsonPointerValue'), null, '  ');
+    return JSON.stringify(this.get('pointerObject'), null, '  ');
   })
 });

@@ -5,60 +5,60 @@ moduleFor('controller:linter', {
   // needs: ['controller:foo']
 });
 
-test('parsedJsonObject is the parsed JSON of jsonObject', function(assert) {
+test('object is the parsed JSON of objectString', function(assert) {
   var controller = this.subject();
-  controller.set('jsonObject', '{ "foo": "bar" }');
+  controller.set('objectString', '{ "foo": "bar" }');
 
-  assert.equal(controller.get('parsedJsonObject').foo, 'bar');
+  assert.equal(controller.get('object').foo, 'bar');
 });
 
-test('parsedJsonObject is undefined when jsonObject is not valid JSON', function(assert) {
+test('object is undefined when objectString is not valid JSON', function(assert) {
   var controller = this.subject();
-  controller.set('jsonObject', '{ unquotedPropertyName: "foo" }');
+  controller.set('objectString', '{ unquotedPropertyName: "foo" }');
 
-  assert.equal(controller.get('parsedJsonObject'), undefined);
+  assert.equal(controller.get('object'), undefined);
 });
 
-test('formattedJsonObject formats parsedJsonObject with two-space indents', function(assert) {
+test('stringifiedObject formats object with two-space indents', function(assert) {
   var controller = this.subject();
-  controller.set('parsedJsonObject', { foo: 'bar' });
+  controller.set('object', { foo: 'bar' });
 
-  assert.equal(controller.get('formattedJsonObject'), "{\n  \"foo\": \"bar\"\n}");
+  assert.equal(controller.get('stringifiedObject'), "{\n  \"foo\": \"bar\"\n}");
 });
 
-test('formattedJsonObject shows a message when parsedJsonObject is undefined', function(assert) {
+test('stringifiedObject shows a message when object is undefined', function(assert) {
   var controller = this.subject();
-  controller.set('parsedJsonObject', undefined);
+  controller.set('object', undefined);
 
-  assert.equal(controller.get('formattedJsonObject'), 'Please enter a valid JSON object.');
+  assert.equal(controller.get('stringifiedObject'), 'Please enter a valid JSON object.');
 });
 
-test('jsonPointerValue is the object referenced by the JSON pointer', function(assert) {
+test('pointerObject is the object referenced by the JSON pointer', function(assert) {
   var controller = this.subject();
-  controller.set('jsonPointer', '/foo');
-  controller.set('parsedJsonObject', { foo: 'bar' });
+  controller.set('pointer', '/foo');
+  controller.set('object', { foo: 'bar' });
 
-  assert.equal(controller.get('jsonPointerValue'), 'bar');
+  assert.equal(controller.get('pointerObject'), 'bar');
 });
 
-test('jsonPointerValue is unedfined if getting the pointer fails', function(assert) {
+test('pointerObject is unedfined if getting the pointer fails', function(assert) {
   var controller = this.subject();
-  controller.set('jsonPointer', 'badPointer');
-  controller.set('parsedJsonObject', { foo: 'bar' });
+  controller.set('pointer', 'badPointer');
+  controller.set('object', { foo: 'bar' });
 
-  assert.equal(controller.get('jsonPointerValue'), undefined);
+  assert.equal(controller.get('pointerObject'), undefined);
 });
 
-test('formattedJsonPointerValue formats jsonPointerValue with two-space indents', function(assert) {
+test('stringifiedPointerObject formats pointerObject with two-space indents', function(assert) {
   var controller = this.subject();
-  controller.set('jsonPointerValue', { foo: 'bar' });
+  controller.set('pointerObject', { foo: 'bar' });
 
-  assert.equal(controller.get('formattedJsonPointerValue'), "{\n  \"foo\": \"bar\"\n}");
+  assert.equal(controller.get('stringifiedPointerObject'), "{\n  \"foo\": \"bar\"\n}");
 });
 
-test('formattedJsonPointerValue shows a message when jsonPointerValue is undefined', function(assert) {
+test('stringifiedPointerObject shows a message when pointerObject is undefined', function(assert) {
   var controller = this.subject();
-  controller.set('jsonPointerValue', undefined);
+  controller.set('pointerObject', undefined);
 
-  assert.equal(controller.get('formattedJsonPointerValue'), 'Please enter a valid JSON object and pointer.');
+  assert.equal(controller.get('stringifiedPointerObject'), 'Please enter a valid JSON object and pointer.');
 });
