@@ -5,13 +5,6 @@ export default Ember.Controller.extend({
   objectString: '',
   pointer: '',
 
-  pointerObject: Ember.computed('pointer', 'object', function() {
-    try {
-      return pointer.get(this.get('object'), this.get('pointer'));
-    }
-    catch (e) { return undefined; }
-  }),
-
   object: Ember.computed('objectString', function() {
     try { return JSON.parse(this.get('objectString')); }
     catch (e) { return undefined; }
@@ -22,6 +15,13 @@ export default Ember.Controller.extend({
       return 'Please enter a valid JSON object.';
     }
     return JSON.stringify(this.get('object'), null, '  ');
+  }),
+
+  pointerObject: Ember.computed('pointer', 'object', function() {
+    try {
+      return pointer.get(this.get('object'), this.get('pointer'));
+    }
+    catch (e) { return undefined; }
   }),
 
   stringifiedPointerObject: Ember.computed('pointerObject', function() {
