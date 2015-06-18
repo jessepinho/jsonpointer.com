@@ -1,4 +1,8 @@
-<nav>
-  <h1>JSON Pointer Linter</h1>
-</nav>
-{{outlet}}
+<div class="container">
+  <header class="navbar navbar-default">
+    {{#link-to "linter" class="navbar-brand"}}JSON Pointer Linter{{/link-to}}
+  </header>
+  <main class="row">
+    {{outlet}}
+  </main>
+</div>

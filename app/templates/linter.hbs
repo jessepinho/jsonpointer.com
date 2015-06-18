@@ -1,18 +1,23 @@
-{{textarea value=objectString}}
+<form class="form-horizontal col-xs-6">
+  <div class="form-group form-group-lg">
+    <label for="object" class="control-label col-xs-2">JSON</label>
+    <div class="col-xs-10">
+      {{textarea value=objectString class="form-control" id="object" rows="5"}}
+    </div>
+  </div>
 
-{{input value=pointer}}
+  <div class="form-group form-group-lg">
+    <label for="pointer" class="control-label col-xs-2">Pointer</label>
+    <div class="col-xs-10">
+      {{input value=pointer class="form-control" id="pointer"}}
+    </div>
+  </div>
+</form>
 
-<h2>JSON object</h2>
-<pre>
-<code>
-{{stringifiedObject}}
-</code>
-</pre>
+<section class="output col-xs-6">
+  <h2>JSON object</h2>
+  <pre><code>{{stringifiedObject}}</code></pre>
 
-<h2>Object referenced by pointer</h2>
-
-<pre>
-<code>
-{{stringifiedPointerObject}}
-</code>
-</pre>
+  <h2>Object referenced by pointer</h2>
+  <pre><code>{{stringifiedPointerObject}}</code></pre>
+</section>
