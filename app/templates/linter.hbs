@@ -16,7 +16,7 @@
 
 <section class="output col-xs-6">
   <h2>JSON object</h2>
-  <pre><code>{{stringifiedObject}}</code></pre>
+  <pre><code>{{#if objectString}}{{stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
 
   <h2>Object referenced by pointer</h2>
   <pre><code>{{stringifiedPointerObject}}</code></pre>

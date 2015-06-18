@@ -30,7 +30,7 @@ test('stringifiedObject shows a message when object is undefined', function(asse
   var controller = this.subject();
   controller.set('object', undefined);
 
-  assert.equal(controller.get('stringifiedObject'), 'Please enter a valid JSON object.');
+  assert.equal(controller.get('stringifiedObject'), 'The JSON object you entered is invalid.');
 });
 
 test('pointerObject is the object referenced by the JSON pointer', function(assert) {

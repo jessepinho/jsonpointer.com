@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
 
   stringifiedObject: Ember.computed('object', function() {
     if (typeof this.get('object') === 'undefined') {
-      return 'Please enter a valid JSON object.';
+      return 'The JSON object you entered is invalid.';
     }
     return JSON.stringify(this.get('object'), null, '  ');
   }),
