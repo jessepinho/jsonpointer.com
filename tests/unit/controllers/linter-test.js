@@ -5,8 +5,23 @@ moduleFor('controller:linter', {
   // needs: ['controller:foo']
 });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
+test('parsedJsonObject is the parsed JSON of jsonObject', function(assert) {
   var controller = this.subject();
-  assert.ok(controller);
+  controller.set('jsonObject', '{ "foo": "bar" }');
+
+  assert.equal(controller.get('parsedJsonObject').foo, 'bar');
+});
+
+test('parsedJsonObject is an empty string when jsonObject is not valid JSON', function(assert) {
+  var controller = this.subject();
+  controller.set('jsonObject', '{ unquotedPropertyName: "foo" }');
+
+  assert.equal(controller.get('parsedJsonObject'), '');
+});
+
+test('formattedJsonObject formats parsedJsonObject with two-space indents', function(assert) {
+  var controller = this.subject();
+  controller.set('parsedJsonObject', { foo: 'bar' });
+
+  assert.equal(controller.get('formattedJsonObject'), "{\n  \"foo\": \"bar\"\n}");
 });
