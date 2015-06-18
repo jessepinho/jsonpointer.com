@@ -2,14 +2,21 @@
   <div class="form-group form-group-lg">
     <label for="object" class="control-label col-xs-2">JSON</label>
     <div class="col-xs-10">
-      {{textarea value=objectString class="form-control" id="object" rows="5"}}
+      {{textarea value=objectString
+                 class="form-control"
+                 id="object"
+                 rows="10"
+                 placeholder=objectPlaceholder}}
     </div>
   </div>
 
   <div class="form-group form-group-lg">
     <label for="pointer" class="control-label col-xs-2">Pointer</label>
     <div class="col-xs-10">
-      {{input value=pointer class="form-control" id="pointer"}}
+      {{input value=pointer
+              class="form-control"
+              id="pointer"
+              placeholder=pointerPlaceholder}}
     </div>
   </div>
 </form>
