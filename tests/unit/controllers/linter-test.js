@@ -12,11 +12,11 @@ test('parsedJsonObject is the parsed JSON of jsonObject', function(assert) {
   assert.equal(controller.get('parsedJsonObject').foo, 'bar');
 });
 
-test('parsedJsonObject is an empty string when jsonObject is not valid JSON', function(assert) {
+test('parsedJsonObject is undefined when jsonObject is not valid JSON', function(assert) {
   var controller = this.subject();
   controller.set('jsonObject', '{ unquotedPropertyName: "foo" }');
 
-  assert.equal(controller.get('parsedJsonObject'), '');
+  assert.equal(controller.get('parsedJsonObject'), undefined);
 });
 
 test('formattedJsonObject formats parsedJsonObject with two-space indents', function(assert) {
@@ -24,6 +24,13 @@ test('formattedJsonObject formats parsedJsonObject with two-space indents', func
   controller.set('parsedJsonObject', { foo: 'bar' });
 
   assert.equal(controller.get('formattedJsonObject'), "{\n  \"foo\": \"bar\"\n}");
+});
+
+test('formattedJsonObject shows a message when parsedJsonObject is undefined', function(assert) {
+  var controller = this.subject();
+  controller.set('parsedJsonObject', undefined);
+
+  assert.equal(controller.get('formattedJsonObject'), 'Please enter a valid JSON object.');
 });
 
 test('jsonPointerValue is the object referenced by the JSON pointer', function(assert) {
@@ -34,12 +41,12 @@ test('jsonPointerValue is the object referenced by the JSON pointer', function(a
   assert.equal(controller.get('jsonPointerValue'), 'bar');
 });
 
-test('jsonPointerValue is an empty string if getting the pointer fails', function(assert) {
+test('jsonPointerValue is unedfined if getting the pointer fails', function(assert) {
   var controller = this.subject();
   controller.set('jsonPointer', 'badPointer');
   controller.set('parsedJsonObject', { foo: 'bar' });
 
-  assert.equal(controller.get('jsonPointerValue'), '');
+  assert.equal(controller.get('jsonPointerValue'), undefined);
 });
 
 test('formattedJsonPointerValue formats jsonPointerValue with two-space indents', function(assert) {
@@ -49,3 +56,9 @@ test('formattedJsonPointerValue formats jsonPointerValue with two-space indents'
   assert.equal(controller.get('formattedJsonPointerValue'), "{\n  \"foo\": \"bar\"\n}");
 });
 
+test('formattedJsonPointerValue shows a message when jsonPointerValue is undefined', function(assert) {
+  var controller = this.subject();
+  controller.set('jsonPointerValue', undefined);
+
+  assert.equal(controller.get('formattedJsonPointerValue'), 'Please enter a valid JSON object and pointer.');
+});

@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
       return pointer.get(this.get('parsedJsonObject'), this.get('jsonPointer'));
     }
     catch (e) {
-      return "";
+      return undefined;
     }
   }),
   parsedJsonObject: Ember.computed('jsonObject', function() {
@@ -17,13 +17,19 @@ export default Ember.Controller.extend({
       return JSON.parse(this.get('jsonObject'));
     }
     catch (e) {
-      return "";
+      return undefined;
     }
   }),
   formattedJsonObject: Ember.computed('parsedJsonObject', function() {
+    if (typeof this.get('parsedJsonObject') === 'undefined') {
+      return 'Please enter a valid JSON object.';
+    }
     return JSON.stringify(this.get('parsedJsonObject'), null, '  ');
   }),
   formattedJsonPointerValue: Ember.computed('jsonPointerValue', function() {
+    if (typeof this.get('jsonPointerValue') === 'undefined') {
+      return 'Please enter a valid JSON object and pointer.';
+    }
     return JSON.stringify(this.get('jsonPointerValue'), null, '  ');
   })
 });
