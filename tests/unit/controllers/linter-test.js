@@ -25,3 +25,27 @@ test('formattedJsonObject formats parsedJsonObject with two-space indents', func
 
   assert.equal(controller.get('formattedJsonObject'), "{\n  \"foo\": \"bar\"\n}");
 });
+
+test('jsonPointerValue is the object referenced by the JSON pointer', function(assert) {
+  var controller = this.subject();
+  controller.set('jsonPointer', '/foo');
+  controller.set('parsedJsonObject', { foo: 'bar' });
+
+  assert.equal(controller.get('jsonPointerValue'), 'bar');
+});
+
+test('jsonPointerValue is an empty string if getting the pointer fails', function(assert) {
+  var controller = this.subject();
+  controller.set('jsonPointer', 'badPointer');
+  controller.set('parsedJsonObject', { foo: 'bar' });
+
+  assert.equal(controller.get('jsonPointerValue'), '');
+});
+
+test('formattedJsonPointerValue formats jsonPointerValue with two-space indents', function(assert) {
+  var controller = this.subject();
+  controller.set('jsonPointerValue', { foo: 'bar' });
+
+  assert.equal(controller.get('formattedJsonPointerValue'), "{\n  \"foo\": \"bar\"\n}");
+});
+
