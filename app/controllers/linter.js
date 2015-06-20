@@ -89,4 +89,10 @@ export default Ember.Controller.extend({
   pointerPlaceholder: Ember.computed('chosenPlaceholder', function() {
     return this.get('chosenPlaceholder').pointer;
   }),
+
+  actions: {
+    formatObjectString: function() {
+      this.set('objectString', JSON.stringify(this.get('object'), null, 2));
+    }
+  }
 });

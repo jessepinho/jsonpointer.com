@@ -1,30 +1,41 @@
-<form class="form-horizontal col-xs-6">
-  <div class="form-group form-group-lg">
-    <label for="object" class="control-label col-xs-2">JSON</label>
-    <div class="col-xs-10">
-      {{textarea value=objectString
-                 class="form-control"
-                 id="object"
-                 rows="10"
-                 placeholder=objectPlaceholder}}
+<section class="col-xs-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <button class="btn btn-default btn-xs pull-right" {{action "formatObjectString"}}>
+        Format
+      </button>
+      <h3 class="panel-title">JSON</h3>
     </div>
-  </div>
+    <div class="panel-body">
+      <div class="form-group">
+          {{textarea value=objectString
+                     class="form-control code-input"
+                     id="object"
+                     rows="10"
+                     placeholder=objectPlaceholder}}
+      </div>
 
-  <div class="form-group form-group-lg">
-    <label for="pointer" class="control-label col-xs-2">Pointer</label>
-    <div class="col-xs-10">
-      {{input value=pointer
-              class="form-control"
-              id="pointer"
-              placeholder=pointerPlaceholder}}
+      <div class="form-group">
+        <label for="pointer" class="control-label">Pointer</label>
+        {{input value=pointer
+                class="form-control code-input"
+                id="pointer"
+                placeholder=pointerPlaceholder}}
+      </div>
     </div>
   </div>
-</form>
+</section>
 
 <section class="output col-xs-6">
-  <h2>JSON object</h2>
-  <pre><code>{{#if objectString}}{{stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Output</h3>
+    </div>
+    <div class="panel-body">
+      <pre><code>{{#if objectString}}{{stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
 
-  <h2>Object referenced by pointer</h2>
-  <pre><code>{{stringifiedPointerObject}}</code></pre>
+      <h4>Object referenced by pointer</h4>
+      <pre><code>{{stringifiedPointerObject}}</code></pre>
+    </div>
+  </div>
 </section>
