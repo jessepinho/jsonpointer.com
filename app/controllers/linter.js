@@ -83,22 +83,22 @@ export default Ember.Controller.extend({
   chosenPlaceholder: Ember.computed('placeholders', function() {
     var placeholders = this.get('placeholders');
     var randomIndex = Math.floor(Math.random() * placeholders.length);
-    return placeholders[randomIndex];
-  }),
-
-  objectPlaceholder: Ember.computed('chosenPlaceholder', function() {
-    return JSON.stringify(this.get('chosenPlaceholder').object, null, '  ');
-  }),
-
-  pointerPlaceholder: Ember.computed('chosenPlaceholder', function() {
-    return this.get('chosenPlaceholder').pointer;
-  }),
+    return {
+      pointer: placeholders[randomIndex].pointer,
+      json: JSON.stringify(placeholders[randomIndex].object, null, 2)
+    };
+  }).volatile(),
 
   actions: {
     formatJson: function() {
       if (typeof this.get('object') !== 'undefined') {
         this.set('json', JSON.stringify(this.get('object'), null, 2));
       }
+    },
+    randomizeData: function() {
+      var chosenPlaceholder = this.get('chosenPlaceholder');
+      this.set('json', chosenPlaceholder.json);
+      this.set('pointer', chosenPlaceholder.pointer);
     }
   }
 });
