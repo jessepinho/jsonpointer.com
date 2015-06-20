@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'jsonpointer',
     environment: environment,
-    baseURL: '/jsonpointer',
+    baseURL: '/',
     locationType: 'hash',
     EmberENV: {
       FEATURES: {
