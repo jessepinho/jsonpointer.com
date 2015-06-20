@@ -32,10 +32,7 @@
       <h3 class="panel-title">Output</h3>
     </div>
     <div class="panel-body">
-      <pre><code>{{#if objectString}}{{stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
-
-      <h4>Object referenced by pointer</h4>
-      <pre><code>{{stringifiedPointerObject}}</code></pre>
+      <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if objectString}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
     </div>
   </div>
 </section>

@@ -5,6 +5,7 @@ import jsonStringifier from '../utils/json-stringifier';
 export default Ember.Controller.extend({
   objectString: '',
   pointer: '',
+  hasPointerMatch: Ember.computed.bool('pointerObject'),
 
   object: Ember.computed('objectString', function() {
     try { return JSON.parse(this.get('objectString')); }
@@ -19,6 +20,7 @@ export default Ember.Controller.extend({
   }),
 
   pointerObject: Ember.computed('pointer', 'object', function() {
+    if (!this.get('pointer')) { return false; }
     try {
       return pointer.get(this.get('object'), this.get('pointer'));
     }
