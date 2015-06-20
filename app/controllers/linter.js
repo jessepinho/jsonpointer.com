@@ -2,6 +2,59 @@ import Ember from 'ember';
 import pointer from 'npm:json-pointer';
 import jsonStringifier from '../utils/json-stringifier';
 
+var placeholders = [
+  {
+    pointer: '/westeros/rulers/0',
+    object: {
+      westeros: {
+        kingdomCount: 7,
+        rulers: [ 'Robert Baratheon', 'Joffrey Lannister', 'Tommen Lannister' ]
+      }
+    }
+  },
+  {
+    pointer: '/senses/5',
+    object: {
+      senses: [ 'sight', 'sound', 'smell', 'touch', 'taste', 'sixth' ]
+    }
+  },
+  {
+    pointer: '/rules/1',
+    object: {
+      members: ['Cornelius', 'Tyler', 'Bob'],
+      rules: [
+        'You do not talk about Fight Club.',
+        'You do not talk about Fight Club.',
+        'Someone yells stop, goes limp, taps out, the fight is over.',
+        'Only two guys to a fight.',
+        'One fight at a time.',
+        'No shirts, no shoes.',
+        'Fights will go on as long as they have to.',
+        'If this is your first night at Fight Club, you have to fight.'
+      ]
+    }
+  },
+  {
+    pointer: '/planets/1',
+    object: {
+      planets: [
+        {
+          name: 'Earth',
+          technologicallyAdvancedSpecies: 'Homo sapien',
+          hasBuiltSpaceships: true,
+          moons: 1
+        },
+        {
+          name: 'Kerbin',
+          technologicallyAdvancedSpecies: 'Kerbal',
+          hasBuiltSpaceships: true,
+          moons: 2
+        }
+      ]
+    }
+  }
+];
+
 export default Ember.Controller.extend({
   json: '',
   pointer: '',
@@ -35,50 +88,7 @@ export default Ember.Controller.extend({
     return JSON.stringify(this.get('pointerObject'), null, '  ');
   }),
 
-  placeholders: [
-    {
-      pointer: '/westeros/rulers/0',
-      object: {
-        westeros: {
-          kingdomCount: 7,
-          rulers: [
-            'Robert Baratheon',
-            'Joffrey Lannister',
-            'Tommen Lannister'
-          ]
-        }
-      }
-    },
-    {
-      pointer: '/senses/5',
-      object: {
-        senses: [
-          'sight',
-          'sound',
-          'smell',
-          'touch',
-          'taste',
-          'sixth'
-        ]
-      }
-    },
-    {
-      pointer: '/rules/1',
-      object: {
-        members: ['Cornelius', 'Tyler', 'Bob'],
-        rules: [
-          'You do not talk about Fight Club.',
-          'You do not talk about Fight Club.',
-          'Someone yells stop, goes limp, taps out, the fight is over.',
-          'Only two guys to a fight.',
-          'One fight at a time.',
-          'No shirts, no shoes.',
-          'Fights will go on as long as they have to.',
-          'If this is your first night at Fight Club, you have to fight.'
-        ]
-      }
-    }
-  ],
+  placeholders: placeholders,
 
   chosenPlaceholder: Ember.computed('placeholders', function() {
     var placeholders = this.get('placeholders');
