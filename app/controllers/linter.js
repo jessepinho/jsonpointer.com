@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   objectString: '',
   pointer: '',
   hasPointerMatch: Ember.computed.bool('pointerObject'),
+  queryParams: ['pointer', 'objectString'],
 
   object: Ember.computed('objectString', function() {
     try { return JSON.parse(this.get('objectString')); }
