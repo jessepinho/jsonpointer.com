@@ -1,56 +1,70 @@
 import Ember from 'ember';
 
-var stringify = function(value, indent) {
-  if (indent == null) { indent = ''; }
+class JsonStringifier {
+  constructor(pointer, parents, indentLevel) {
+    this.pointer = pointer;
+    this.parents = parents;
 
-  switch (Ember.$.type(value)) {
-    case 'string':
-    case 'number':
-    case 'boolean':
-    case 'null':
-    case 'undefined':
-      return JSON.stringify(value);
-    case 'array':
-      return stringifyArray(value, indent);
-    case 'object':
-      return stringifyObject(value, indent);
-    default:
-      throw 'Invalid type to stringify.';
-  }
-};
-
-var stringifyArray = function(value, indent) {
-  var jsonString = '[\n  ' + indent;
-
-  jsonString += value.map(function(arrayItem) {
-    if (typeof arrayItem === 'undefined') {
-      return stringify(null, '  ' + indent);
-    }
-    return stringify(arrayItem, '  ' + indent);
-  }.bind(this)).join(',\n  ' + indent);
-
-  jsonString += '\n' + indent + ']';
-  return jsonString;
-};
-
-var stringifyObject = function(object, indent) {
-  var jsonString = '{\n  ' + indent,
-      objectPropertyJsonStrings = [];
-
-  for (var key in object) {
-    if (object.hasOwnProperty(key) && typeof object[key] !== 'undefined') {
-      objectPropertyJsonStrings.push('"' + key + '": ' + stringify(object[key], '  ' + indent));
+    if (indentLevel == null) {
+      this.indentLevel = '';
+    } else {
+      this.indentLevel = indentLevel;
     }
   }
 
-  jsonString += objectPropertyJsonStrings.join(',\n  ' + indent);
-  jsonString += '\n' + indent + '}';
+  stringify(value) {
+    switch (Ember.$.type(value)) {
+      case 'string':
+      case 'number':
+      case 'boolean':
+      case 'null':
+      case 'undefined':
+        return JSON.stringify(value);
+      case 'array':
+        return this.stringifyArray(value);
+      case 'object':
+        return this.stringifyObject(value);
+      default:
+        throw 'Invalid type to stringify.';
+    }
+  }
 
-  return jsonString;
-};
+  stringifyArray(value) {
+    var jsonString = '[\n  ' + this.indentLevel;
+
+    jsonString += value.map(function(arrayItem) {
+      var stringifier = new JsonStringifier(null, null, '  ' + this.indentLevel);
+      if (typeof arrayItem === 'undefined') {
+        return stringifier.stringify(null);
+      }
+      return stringifier.stringify(arrayItem);
+    }.bind(this)).join(',\n  ' + this.indentLevel);
+
+    jsonString += '\n' + this.indentLevel + ']';
+    return jsonString;
+  }
+
+  stringifyObject(object) {
+    var jsonString = '{\n  ' + this.indentLevel,
+        objectPropertyJsonStrings = [];
+
+    for (var key in object) {
+      if (object.hasOwnProperty(key) && typeof object[key] !== 'undefined') {
+        var stringifier = new JsonStringifier(null, null, '  ' + this.indentLevel);
+        objectPropertyJsonStrings.push('"' + key + '": ' + stringifier.stringify(object[key]));
+      }
+    }
+
+    jsonString += objectPropertyJsonStrings.join(',\n  ' + this.indentLevel);
+    jsonString += '\n' + this.indentLevel + '}';
+
+    return jsonString;
+  }
+}
 
 export function jsonStringifyWithHighlight(value) {
-  return stringify(value);
+  var stringifier = new JsonStringifier();
+  return stringifier.stringify(value);
 }
 
 export default Ember.HTMLBars.makeBoundHelper(jsonStringifyWithHighlight);
