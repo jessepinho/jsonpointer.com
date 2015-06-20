@@ -35,7 +35,7 @@ class JsonStringifier {
       var stringifier = this._createChildStringifier(index);
       if (typeof item === 'undefined') { return stringifier.stringify(null); }
       return stringifier.stringify(item);
-    }.bind(this)).join(',\n  ' + this.indentLevel);
+    }.bind(this)).join(this._joinString());
 
     jsonString += '\n' + this.indentLevel + ']';
 
@@ -56,7 +56,7 @@ class JsonStringifier {
       }
     }
 
-    jsonString += objectPropertyJsonStrings.join(',\n  ' + this.indentLevel);
+    jsonString += objectPropertyJsonStrings.join(this._joinString());
     jsonString += '\n' + this.indentLevel + '}';
 
     return this._withHighlight(jsonString);
@@ -75,6 +75,10 @@ class JsonStringifier {
     return new JsonStringifier(this.pointer,
                                this.parents + '/' + childKey,
                                '  ' + this.indentLevel);
+  }
+
+  _joinString() {
+    return ',\n  ' + this.indentLevel;
   }
 }
 
