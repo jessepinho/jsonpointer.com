@@ -2,11 +2,21 @@
   <div class="row">
     <header class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <span class="navbar-brand">JSON Pointer Linter</span>
-        <a href="https://github.com/jessepinho/jsonpointer.com" class="nav-link nav-link-github pull-right" target="_blank">
+        {{#link-to "linter"
+                   (query-params json="" pointer="")
+                   class="navbar-brand"}}
+          JSON Pointer Linter
+        {{/link-to}}
+
+        <a href="https://github.com/jessepinho/jsonpointer.com"
+           class="nav-link nav-link-github pull-right"
+           target="_blank">
           <img src="assets/github.svg" alt="GitHub logo" />
         </a>
-        <a href="http://www.jessepinho.com" class="nav-link nav-link-jesse-pinho pull-right" target="_blank">
+
+        <a href="http://www.jessepinho.com"
+           class="nav-link nav-link-jesse-pinho pull-right"
+           target="_blank">
           <img src="assets/jesse-pinho.svg" alt="JessePinho.com" />
         </a>
       </div>
