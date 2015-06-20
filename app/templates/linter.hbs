@@ -1,38 +1,28 @@
 <section class="col-xs-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <button class="btn btn-default btn-xs pull-right" {{action "formatJson"}}>
-        Format
-      </button>
-      <h3 class="panel-title">JSON</h3>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-          {{textarea value=json
-                     class="form-control code-input"
-                     id="object"
-                     rows="10"
-                     placeholder=objectPlaceholder}}
-      </div>
+  <div class="form-group">
+      {{textarea value=json
+                 class="form-control code-input"
+                 id="object"
+                 rows="10"
+                 placeholder=objectPlaceholder}}
+  </div>
 
-      <div class="form-group">
-        <label for="pointer" class="control-label">Pointer</label>
-        {{input value=pointer
-                class="form-control code-input"
-                id="pointer"
-                placeholder=pointerPlaceholder}}
-      </div>
+  <button class="btn btn-link btn-xs" {{action "formatJson"}}>
+    <span class="glyphicon glyphicon-align-left"></span>
+    Format JSON
+  </button>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Pointer</span>
+      {{input value=pointer
+              class="form-control code-input"
+              id="pointer"
+              placeholder=pointerPlaceholder}}
     </div>
   </div>
 </section>
 
 <section class="output col-xs-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Output</h3>
-    </div>
-    <div class="panel-body">
-      <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
-    </div>
-  </div>
+  <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
 </section>

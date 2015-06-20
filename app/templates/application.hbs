@@ -1,8 +1,14 @@
 <div class="container">
-  <header class="navbar navbar-default">
-    {{#link-to "linter" class="navbar-brand"}}JSON Pointer Linter{{/link-to}}
-  </header>
-  <main class="row">
-    {{outlet}}
-  </main>
+  <div class="row">
+    <header class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        {{#link-to "linter" class="navbar-brand"}}JSON Pointer Linter{{/link-to}}
+      </div>
+    </header>
+  </div>
+  <div class="row">
+    <main>
+      {{outlet}}
+    </main>
+  </div>
 </div>
