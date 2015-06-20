@@ -96,7 +96,9 @@ export default Ember.Controller.extend({
 
   actions: {
     formatJson: function() {
-      this.set('json', JSON.stringify(this.get('object'), null, 2));
+      if (typeof this.get('object') !== 'undefined') {
+        this.set('json', JSON.stringify(this.get('object'), null, 2));
+      }
     }
   }
 });
