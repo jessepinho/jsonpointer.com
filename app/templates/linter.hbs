@@ -1,4 +1,4 @@
-<section class="col-xs-6">
+<section class="col-sm-6">
   <div class="form-group">
       {{textarea value=json
                  class="form-control code-input"
@@ -25,6 +25,6 @@
   </div>
 </section>
 
-<section class="output col-xs-6">
+<section class="output col-sm-6">
   <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
 </section>
