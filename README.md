@@ -1,7 +1,6 @@
-# Jsonpointer
+# JSONPointer.com
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A linter for [JSON pointers](https://tools.ietf.org/html/rfc6901).
 
 ## Prerequisites
 
@@ -15,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:jessepinho/jsonpointer.com.git`
 * change into the new directory
 * `npm install`
 * `bower install`
@@ -41,7 +40,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+JSONPointer.com uses [ember-cli-github-pages](https://github.com/poetic/ember-cli-github-pages) for deployment to GitHub Pages.
 
 ## Further Reading / Useful Links
 
