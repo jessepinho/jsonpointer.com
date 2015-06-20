@@ -3,13 +3,13 @@ import pointer from 'npm:json-pointer';
 import jsonStringifier from '../utils/json-stringifier';
 
 export default Ember.Controller.extend({
-  objectString: '',
+  json: '',
   pointer: '',
   hasPointerMatch: Ember.computed.bool('pointerObject'),
-  queryParams: ['pointer', 'objectString'],
+  queryParams: ['pointer', 'json'],
 
-  object: Ember.computed('objectString', function() {
-    try { return JSON.parse(this.get('objectString')); }
+  object: Ember.computed('json', function() {
+    try { return JSON.parse(this.get('json')); }
     catch (e) { return undefined; }
   }),
 
@@ -95,8 +95,8 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-    formatObjectString: function() {
-      this.set('objectString', JSON.stringify(this.get('object'), null, 2));
+    formatJson: function() {
+      this.set('json', JSON.stringify(this.get('object'), null, 2));
     }
   }
 });

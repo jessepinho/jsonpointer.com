@@ -5,16 +5,16 @@ moduleFor('controller:linter', {
   // needs: ['controller:foo']
 });
 
-test('object is the parsed JSON of objectString', function(assert) {
+test('object is the parsed JSON of json', function(assert) {
   var controller = this.subject();
-  controller.set('objectString', '{ "foo": "bar" }');
+  controller.set('json', '{ "foo": "bar" }');
 
   assert.equal(controller.get('object').foo, 'bar');
 });
 
-test('object is undefined when objectString is not valid JSON', function(assert) {
+test('object is undefined when json is not valid JSON', function(assert) {
   var controller = this.subject();
-  controller.set('objectString', '{ unquotedPropertyName: "foo" }');
+  controller.set('json', '{ unquotedPropertyName: "foo" }');
 
   assert.equal(controller.get('object'), undefined);
 });
