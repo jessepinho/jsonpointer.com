@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import pointer from 'npm:json-pointer';
+import { jsonStringifyWithHighlight } from '../helpers/json-stringify-with-highlight';
 
 export default Ember.Controller.extend({
   objectString: '',
@@ -10,11 +11,11 @@ export default Ember.Controller.extend({
     catch (e) { return undefined; }
   }),
 
-  stringifiedObject: Ember.computed('object', function() {
+  stringifiedObject: Ember.computed('object', 'pointer', function() {
     if (typeof this.get('object') === 'undefined') {
       return 'The JSON object you entered is invalid.';
     }
-    return JSON.stringify(this.get('object'), null, '  ');
+    return jsonStringifyWithHighlight(this.get('object'), this.get('pointer'));
   }),
 
   pointerObject: Ember.computed('pointer', 'object', function() {
