@@ -1,4 +1,5 @@
 import jsonStringifier from '../../../utils/json-stringifier';
+import { highlightStart, highlightEnd } from '../../../utils/json-stringifier';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | json stringifier');
@@ -71,24 +72,34 @@ test('it highlights a property of an object referenced by the pointer', function
   var object = { a: { b: 'c' } };
   var pointer = '/a/b';
   var result = jsonStringifier(object, pointer);
+  var highlighted = highlightStart + '"c"' + highlightEnd;
+  var expected = '{\n  "a": {\n    "b": ' + highlighted + '\n  }\n}';
 
-  assert.equal(result, '{\n  "a": {\n    "b": *"c"*\n  }\n}');
+  assert.equal(result, expected);
 });
 
 test('it highlights a nested object referenced by the pointer', function(assert) {
   var object = { a: { b: 'c' } };
   var pointer = '/a';
   var result = jsonStringifier(object, pointer);
+  var highlighted = highlightStart + '{\n    "b": "c"\n  }' + highlightEnd;
+  var expected = '{\n  "a": ' + highlighted + '\n}';
 
-  assert.equal(result, '{\n  "a": *{\n    "b": "c"\n  }*\n}');
+  assert.equal(result, expected);
 });
 
 test('it highlights the part of the array referenced by the pointer', function(assert) {
   var result = jsonStringifier([1, 2, 3], '/1');
-  assert.equal(result, '[\n  1,\n  *2*,\n  3\n]');
+  var highlighted = highlightStart + '2' + highlightEnd;
+  var expected = '[\n  1,\n  ' + highlighted + ',\n  3\n]';
+
+  assert.equal(result, expected);
 });
 
 test('it highlights a nested array referenced by the pointer', function(assert) {
   var result = jsonStringifier([1, [2, 3], 4], '/1');
-  assert.equal(result, '[\n  1,\n  *[\n    2,\n    3\n  ]*,\n  4\n]');
+  var highlighted = highlightStart + '[\n    2,\n    3\n  ]' + highlightEnd;
+  var expected = '[\n  1,\n  ' + highlighted + ',\n  4\n]';
+
+  assert.equal(result, expected);
 });

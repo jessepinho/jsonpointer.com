@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+export var highlightStart = '_JSONPointerHighlight_';
+export var highlightEnd = '_/JSONPointerHighlight_';
+
 class JsonStringifier {
   constructor(pointer, parents, indentLevel) {
     this.pointer     = typeof pointer !== 'undefined' ? pointer : '';
@@ -62,12 +65,12 @@ class JsonStringifier {
     return this._withHighlight(jsonString);
   }
 
-  _shouldHighlight() {
+  _matchesPointer() {
     return this.pointer && this.pointer === this.parents;
   }
 
   _withHighlight(value) {
-    if (this._shouldHighlight()) { return '*' + value + '*'; }
+    if (this._matchesPointer()) { return highlightStart + value + highlightEnd; }
     return value;
   }
 
