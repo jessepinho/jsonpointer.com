@@ -7,10 +7,6 @@
                  placeholder=objectPlaceholder}}
   </div>
 
-  <button class="btn btn-link btn-xs" {{action "formatJson"}}>
-    <span class="glyphicon glyphicon-align-left"></span>
-    Format JSON
-  </button>
 
   <div class="form-group">
     <div class="input-group">
@@ -19,6 +15,12 @@
               class="form-control code-input"
               id="pointer"
               placeholder=pointerPlaceholder}}
+      <span class="input-group-btn">
+        <button class="btn btn-default" {{action "formatJson"}}>
+          <span class="glyphicon glyphicon-align-left"></span>
+          Format JSON
+        </button>
+      </span>
     </div>
   </div>
 </section>
