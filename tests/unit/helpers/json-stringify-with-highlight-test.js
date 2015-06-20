@@ -52,5 +52,5 @@ test('it filters undefined properties out of objects', function(assert) {
 
 test('it converts undefined to null in arrays', function(assert) {
   var result = jsonStringifyWithHighlight([1, 2, undefined]);
-  assert.equal(result, "[\n  1,\n  2,  \n  null\n]");
+  assert.equal(result, "[\n  1,\n  2,\n  null\n]");
 });
