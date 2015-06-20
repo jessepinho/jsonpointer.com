@@ -82,9 +82,7 @@ class JsonStringifier {
   }
 }
 
-export function jsonStringifyWithHighlight(value, pointer) {
+export default function jsonStringifier(value, pointer) {
   var stringifier = new JsonStringifier(pointer);
   return stringifier.stringify(value);
 }
-
-export default Ember.HTMLBars.makeBoundHelper(jsonStringifyWithHighlight);
