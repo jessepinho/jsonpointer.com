@@ -63,5 +63,32 @@ test('it double-indents nested items in arrays', function(assert) {
 test('it double-indents nested items in objects', function(assert) {
   var object = { a: { b: 'c' } };
   var result = jsonStringifyWithHighlight(object);
+
   assert.equal(result, '{\n  "a": {\n    "b": "c"\n  }\n}');
+});
+
+test('it highlights a property of an object referenced by the pointer', function(assert) {
+  var object = { a: { b: 'c' } };
+  var pointer = '/a/b';
+  var result = jsonStringifyWithHighlight(object, pointer);
+
+  assert.equal(result, '{\n  "a": {\n    "b": *"c"*\n  }\n}');
+});
+
+test('it highlights a nested object referenced by the pointer', function(assert) {
+  var object = { a: { b: 'c' } };
+  var pointer = '/a';
+  var result = jsonStringifyWithHighlight(object, pointer);
+
+  assert.equal(result, '{\n  "a": *{\n    "b": "c"\n  }*\n}');
+});
+
+test('it highlights the part of the array referenced by the pointer', function(assert) {
+  var result = jsonStringifyWithHighlight([1, 2, 3], '/1');
+  assert.equal(result, '[\n  1,\n  *2*,\n  3\n]');
+});
+
+test('it highlights a nested array referenced by the pointer', function(assert) {
+  var result = jsonStringifyWithHighlight([1, [2, 3], 4], '/1');
+  assert.equal(result, '[\n  1,\n  *[\n    2,\n    3\n  ]*,\n  4\n]');
 });
