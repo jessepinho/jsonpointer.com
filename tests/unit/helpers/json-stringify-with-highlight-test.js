@@ -17,12 +17,12 @@ test('it stringifies a complex object the same as JSON.stringify()', function(as
 
 test('it stringifies an object', function(assert) {
   var result = jsonStringifyWithHighlight({ a: 'b', c: 'd' });
-  assert.equal(result, "{\n  \"a\": \"b\",\n  \"c\": \"d\"\n}");
+  assert.equal(result, '{\n  "a": "b",\n  "c": "d"\n}');
 });
 
 test('it stringifies an array', function(assert) {
   var result = jsonStringifyWithHighlight([1, 2]);
-  assert.equal(result, "[\n  1,\n  2\n]");
+  assert.equal(result, '[\n  1,\n  2\n]');
 });
 
 test('it stringifies a string', function(assert) {
@@ -47,10 +47,10 @@ test('it stringifies null', function(assert) {
 
 test('it filters undefined properties out of objects', function(assert) {
   var result = jsonStringifyWithHighlight({ a: 'b', c: undefined });
-  assert.equal(result, "{\n  \"a\": \"b\"\n}");
+  assert.equal(result, '{\n  "a": "b"\n}');
 });
 
 test('it converts undefined to null in arrays', function(assert) {
   var result = jsonStringifyWithHighlight([1, 2, undefined]);
-  assert.equal(result, "[\n  1,\n  2,\n  null\n]");
+  assert.equal(result, '[\n  1,\n  2,\n  null\n]');
 });

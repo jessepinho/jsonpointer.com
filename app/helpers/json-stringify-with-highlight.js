@@ -18,21 +18,21 @@ var stringify = function(value) {
 };
 
 var stringifyArray = function(value) {
-  var jsonString = "[\n  ";
+  var jsonString = '[\n  ';
 
   jsonString += value.map(function(arrayItem) {
     if (typeof arrayItem === 'undefined') {
       return stringify(null);
     }
     return stringify(arrayItem);
-  }.bind(this)).join(",\n  ");
+  }.bind(this)).join(',\n  ');
 
-  jsonString += "\n]";
+  jsonString += '\n]';
   return jsonString;
 };
 
 var stringifyObject = function(object) {
-  var jsonString = "{\n  ";
+  var jsonString = '{\n  ';
 
   var objectPropertyJsonStrings = [];
   for (var key in object) {
@@ -41,8 +41,8 @@ var stringifyObject = function(object) {
     }
   }
 
-  jsonString += objectPropertyJsonStrings.join(",\n  ");
-  jsonString += "\n}";
+  jsonString += objectPropertyJsonStrings.join(',\n  ');
+  jsonString += '\n}';
   return jsonString;
 };
 
