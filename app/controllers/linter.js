@@ -61,6 +61,10 @@ export default Ember.Controller.extend({
   hasPointerMatch: Ember.computed.bool('pointerObject'),
   queryParams: ['pointer', 'json'],
 
+  disableFormatJsonButton: Ember.computed('json', 'object', function() {
+    return !this.get('object') || this.get('json') === JSON.stringify(this.get('object'), null, 2);
+  }),
+
   object: Ember.computed('json', function() {
     try { return JSON.parse(this.get('json')); }
     catch (e) { return undefined; }

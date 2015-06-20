@@ -62,3 +62,26 @@ test('stringifiedPointerObject shows a message when pointerObject is undefined',
 
   assert.equal(controller.get('stringifiedPointerObject'), 'Please enter a valid JSON object and pointer.');
 });
+
+test('disableFormatJsonButton is true when there is no object to format', function(assert) {
+  var controller = this.subject();
+  controller.set('object', undefined);
+
+  assert.equal(controller.get('disableFormatJsonButton'), true);
+});
+
+test('disableFormatJsonButton is true when json is already JSON-stringified', function(assert) {
+  var controller = this.subject();
+  controller.set('json', '[\n  1,\n  2\n]');
+  controller.set('object', [1, 2]);
+
+  assert.equal(controller.get('disableFormatJsonButton'), true);
+});
+
+test('disableFormatJsonButton is false when json is not already JSON-stringified', function(assert) {
+  var controller = this.subject();
+  controller.set('json', '[1, 2]');
+  controller.set('object', [1, 2]);
+
+  assert.equal(controller.get('disableFormatJsonButton'), false);
+});
