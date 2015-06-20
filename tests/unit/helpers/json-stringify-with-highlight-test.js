@@ -54,3 +54,14 @@ test('it converts undefined to null in arrays', function(assert) {
   var result = jsonStringifyWithHighlight([1, 2, undefined]);
   assert.equal(result, '[\n  1,\n  2,\n  null\n]');
 });
+
+test('it double-indents nested items in arrays', function(assert) {
+  var result = jsonStringifyWithHighlight([1, [2, 3]]);
+  assert.equal(result, '[\n  1,\n  [\n    2,\n    3\n  ]\n]');
+});
+
+test('it double-indents nested items in objects', function(assert) {
+  var object = { a: { b: 'c' } };
+  var result = jsonStringifyWithHighlight(object);
+  assert.equal(result, '{\n  "a": {\n    "b": "c"\n  }\n}');
+});
