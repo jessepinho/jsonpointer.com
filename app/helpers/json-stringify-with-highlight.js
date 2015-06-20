@@ -1,9 +1,7 @@
 import Ember from 'ember';
 
 var stringify = function(value, indent) {
-  if (indent == null) {
-    indent = '';
-  }
+  if (indent == null) { indent = ''; }
 
   switch (Ember.$.type(value)) {
     case 'string':
@@ -36,9 +34,9 @@ var stringifyArray = function(value, indent) {
 };
 
 var stringifyObject = function(object, indent) {
-  var jsonString = '{\n  ' + indent;
+  var jsonString = '{\n  ' + indent,
+      objectPropertyJsonStrings = [];
 
-  var objectPropertyJsonStrings = [];
   for (var key in object) {
     if (object.hasOwnProperty(key) && typeof object[key] !== 'undefined') {
       objectPropertyJsonStrings.push('"' + key + '": ' + stringify(object[key], '  ' + indent));
@@ -47,6 +45,7 @@ var stringifyObject = function(object, indent) {
 
   jsonString += objectPropertyJsonStrings.join(',\n  ' + indent);
   jsonString += '\n' + indent + '}';
+
   return jsonString;
 };
 
