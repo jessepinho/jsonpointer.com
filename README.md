@@ -1,6 +1,6 @@
 # JSONPointer.com
 
-A linter for [JSON pointers](https://tools.ietf.org/html/rfc6901).
+A tester for [JSON pointers](https://tools.ietf.org/html/rfc6901).
 
 ## Prerequisites
 
