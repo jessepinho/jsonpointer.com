@@ -40,7 +40,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-JSONPointer.com uses [ember-cli-github-pages](https://github.com/poetic/ember-cli-github-pages) for deployment to GitHub Pages.
+JSONPointer.com uses [ember-cli-github-pages](https://github.com/poetic/ember-cli-github-pages) for deployment to GitHub Pages. Deploy by running `ember github-pages:commmit && git push` from the master branch.
 
 ## Further Reading / Useful Links
 
