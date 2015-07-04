@@ -30,8 +30,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `ember test`, or
+* `ember test --server`, or
+* `ember server`, then visit [http://localhost:4200/tests](http://localhost:4200/tests)
 
 ### Building
 
