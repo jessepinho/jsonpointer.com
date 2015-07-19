@@ -28,6 +28,11 @@ module.exports = function(environment) {
     ENV.googleAnalytics = {
       webPropertyId: "UA-64923202-2"
     };
+
+    ENV.contentSecurityPolicy = {
+      'img-src': "'self' www.google-analytics.com",
+      'script-src': "'self' www.google-analytics.com"
+    };
   }
 
   if (environment === 'test') {
