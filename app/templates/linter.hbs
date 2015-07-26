@@ -1,9 +1,16 @@
 <section class="mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+  <div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet">
     <div class="mdl-card mdl-shadow--2dp input">
       <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Input</h2>
+        <h1 class="mdl-card__title-text">
+          {{#link-to "linter"
+                     (query-params json="" pointer="")
+                     class="mdl-layout-title"}}
+            JSON Pointer Tester
+          {{/link-to}}
+        </h1>
       </div>
+
       <div class="mdl-card__supporting-text">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label object">
           <label for="object" class="mdl-textfield__label">JSON object</label>
@@ -33,14 +40,7 @@
     </div>
   </div>
 
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
-    <div class="mdl-card mdl-shadow--2dp output">
-      <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Output</h2>
-      </div>
-      <div class="mdl-card__supporting-text">
-        <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
-      </div>
-    </div>
+  <div class="mdl-cell mdl-cell--9-col mdl-cell--9-col-tablet">
+    <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
   </div>
 </section>

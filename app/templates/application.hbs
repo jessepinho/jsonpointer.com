@@ -1,29 +1,4 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      {{#link-to "linter"
-                 (query-params json="" pointer="")
-                 class="mdl-layout-title"}}
-        JSON Pointer Tester
-      {{/link-to}}
-
-      <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation">
-        <a href="https://github.com/jessepinho/jsonpointer.com"
-           class="mdl-navigation__link nav-link-github"
-           target="_blank">
-          <img src="assets/github.svg" alt="GitHub logo" />
-        </a>
-
-        <a href="http://www.jessepinho.com"
-           class="mdl-navigation__link nav-link-jesse-pinho"
-           target="_blank">
-          <img src="assets/jesse-pinho.svg" alt="JessePinho.com" />
-        </a>
-      </nav>
-    </div>
-  </header>
-
   <main class="mdl-layout__content">
     <div class="page-content">
       {{outlet}}
