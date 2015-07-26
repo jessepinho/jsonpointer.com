@@ -1,35 +1,31 @@
-<section class="col-sm-6">
-  <div class="form-group">
+<section class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label object">
+      <label for="object" class="mdl-textfield__label">JSON object</label>
       {{textarea value=json
-                 class="form-control code-input"
+                 class="mdl-textfield__input code-input"
                  id="object"
-                 rows="10"
-                 placeholder=chosenPlaceholder.json}}
-  </div>
+                 rows="10"}}
+    </div>
 
-
-  <div class="form-inline">
-    <div class="input-group input-group-sm">
-      <label for="pointer" class="input-group-addon">Pointer</label>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label pointer">
+      <label for="pointer" class="mdl-textfield__label">Pointer</label>
       {{input value=pointer
-              class="form-control code-input"
-              id="pointer"
-              placeholder=chosenPlaceholder.pointer}}
+              class="mdl-textfield__input code-input"
+              id="pointer"}}
     </div>
 
     <div class="btn-group btn-group-sm pull-right">
-      <button class="btn btn-default" {{action "formatJson"}} {{bindAttr disabled="disableFormatJsonButton"}}>
-        <span class="glyphicon glyphicon-align-left"></span>
-        Format JSON
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" {{action "formatJson"}} {{bindAttr disabled="disableFormatJsonButton"}}>
+        <i class="material-icons">format_align_left</i>
       </button>
-      <button class="btn btn-default" {{action "randomizeData"}}>
-        <span class="glyphicon glyphicon-random"></span>
-        Randomize data
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" {{action "randomizeData"}}>
+        <i class="material-icons">shuffle</i>
       </button>
     </div>
   </div>
-</section>
 
-<section class="output col-sm-6">
-  <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <pre><code {{bind-attr class=":json-string hasPointerMatch"}}>{{#if json}}{{json-stringifier-highlighter stringifiedObject}}{{else}}Please enter a JSON object.{{/if}}</code></pre>
+  </div>
 </section>
