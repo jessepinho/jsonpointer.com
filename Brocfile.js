@@ -3,7 +3,6 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp({
-  'ember-bootstrap': { importBootstrapTheme: true },
   sassOptions: {
     includePaths: ['bower_components/material-design-lite/src']
   }
