@@ -1,7 +1,7 @@
 <section class="mdl-grid">
-  <div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet">
-    <div class="mdl-grid">
-      <div class="mdl-card mdl-shadow--2dp full-width title">
+  <div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet left-nav">
+    <div class="mdl-grid title">
+      <div class="mdl-card mdl-shadow--2dp full-width">
         <div class="mdl-card__title">
           <h1 class="mdl-card__title-text">
             {{#link-to "linter"
@@ -10,10 +10,24 @@
             {{/link-to}}
           </h1>
         </div>
+        <div class="mdl-card__media links">
+          <nav class="mdl-navigation">
+            <div class="mdl-layout-spacer"></div>
+            <a href="https://github.com/jessepinho/jsonpointer.com"
+               target="_blank">
+              <img src="assets/github.svg" alt="GitHub logo" />
+            </a>
+
+            <a href="http://www.jessepinho.com"
+               target="_blank">
+              <img src="assets/jesse-pinho.svg" alt="JessePinho.com" />
+            </a>
+          </nav>
+        </div>
       </div>
     </div>
 
-    <div class="mdl-grid">
+    <div class="mdl-grid input">
       <div class="mdl-card mdl-shadow--2dp full-width">
         <div class="mdl-card__supporting-text">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">

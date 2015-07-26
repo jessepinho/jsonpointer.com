@@ -3,21 +3,44 @@ code, .code-input
     family: Menlo, Monaco, Consolas, "Courier New", monospace
     size: $input-text-font-size
 
+.code-input
+  font-size: $input-text-font-size * 0.65
+
 .full-width
   width: 100%
 
+.input
+  box-sizing: border-box
+  width: 100%
+
 .json-pointer-highlight
-  color: #000
+  color: rgba(255, 255, 255, 1)
 
 .json-string
+  color: rgba(255, 255, 255, 1)
   &.has-pointer-match
-    color: #bbb
+    color: rgba(255, 255, 255, 0.3)
+
+.left-nav
+  display: flex
+  flex-direction: column
 
 textarea.code-input
   resize: vertical
 
 .title
-  min-height: auto
+  box-sizing: border-box
+  width: 100%
 
   a
     text-decoration: none
+
+  .links a
+    padding: $padding
+    padding-left: 0
+
+    img
+      height: $button-icon-size
+
+  .mdl-card
+    min-height: auto
