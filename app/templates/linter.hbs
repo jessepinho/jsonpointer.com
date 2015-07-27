@@ -63,11 +63,13 @@
               <i class="material-icons">shuffle</i>
             </button>
 
-            {{#link-to "linter"
-                       (query-params json="" pointer="")
-                       class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"}}
-               <i class="material-icons">clear</i>
-            {{/link-to}}
+            <button
+              class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+              alt="Clear JSON object and pointer"
+              disabled={{disableClearButton}}
+              {{action "clearJsonAndPointer"}}>
+              <i class="material-icons">clear</i>
+            </button>
           </nav>
         </div>
       </div>

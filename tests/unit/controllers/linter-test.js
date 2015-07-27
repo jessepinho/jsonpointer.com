@@ -85,3 +85,13 @@ test('disableFormatJsonButton is false when json is not already JSON-stringified
 
   assert.equal(controller.get('disableFormatJsonButton'), false);
 });
+
+test('clearJsonAndPointer resets the json and pointer properties to empty strings', function(assert) {
+  var controller = this.subject();
+  controller.set('json', '[1, 2]');
+  controller.set('pointer', '/0');
+  controller.send('clearJsonAndPointer');
+
+  assert.equal(controller.get('json'), '');
+  assert.equal(controller.get('pointer'), '');
+});

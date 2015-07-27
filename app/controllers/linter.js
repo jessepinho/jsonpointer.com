@@ -60,6 +60,8 @@ export default Ember.Controller.extend({
   pointer: '',
   hasPointerMatch: Ember.computed.bool('pointerObject'),
   queryParams: ['pointer', 'json'],
+  pointerOrJsonIsPresent: Ember.computed.or('json', 'pointer'),
+  disableClearButton: Ember.computed.not('pointerOrJsonIsPresent'),
 
   disableFormatJsonButton: Ember.computed('json', 'object', function() {
     return !this.get('object') || this.get('json') === JSON.stringify(this.get('object'), null, 2);
@@ -113,6 +115,10 @@ export default Ember.Controller.extend({
       var chosenPlaceholder = this.get('chosenPlaceholder');
       this.set('json', chosenPlaceholder.json);
       this.set('pointer', chosenPlaceholder.pointer);
+    },
+    clearJsonAndPointer: function() {
+      this.set('json', '');
+      this.set('pointer', '');
     }
   }
 });
