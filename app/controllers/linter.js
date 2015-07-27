@@ -58,7 +58,6 @@ var placeholders = [
 export default Ember.Controller.extend({
   json: '',
   pointer: '',
-  hasPointerMatch: Ember.computed.bool('pointerObject'),
   queryParams: ['pointer', 'json'],
   pointerOrJsonIsPresent: Ember.computed.or('json', 'pointer'),
   disableClearButton: Ember.computed.not('pointerOrJsonIsPresent'),
